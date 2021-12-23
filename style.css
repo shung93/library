@@ -18,6 +18,39 @@ body {
     background: #352B3B;
 }
 
+h1 {
+    color: #362B3B;
+    font-weight: 500;
+    margin: 0px;
+}
+
+h2 {
+    color: #362B3B;
+    font-size: 1.75em;
+    font-weight: 500;
+    line-height: 1;
+    padding-bottom: .5em;
+    margin: 0px;
+    border-bottom: 2px solid #B87A85;
+}
+
+h3 {
+    color: #413347;
+    font-size: 1.25em;
+    margin: 0px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+p {
+    color: #413347;
+    font-size: 1.25em;
+    margin: 0px;
+    padding-top: .25em;
+}
+
 .logo {
     font-size: 48px;
     font-weight: bold;
@@ -28,23 +61,142 @@ body {
     padding: 5px;   
 }
 
+#modalBtn {
+    margin: 20px 40px 0px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100px;
+    height: 40px;
+
+}
+
+#submitBtn {
+    font-size: 22px;
+    font-weight: 500;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #B87A85;
+    color: #F1E4E8;
+    border: solid 1px;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #CDA2AA;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #B87A85;
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */    
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    background-color: #FCEEEE;
+    margin: 30% auto; 
+    padding: 30px;
+    width: 70%; /* Could be more or less, depending on screen size */
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #D8D0DC;
+    color: rgb(139, 139, 139);
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+}
+
+.close:hover, .close:focus {
+    color: rgb(41, 41, 41);
+    background: #9E8AA8;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px 10px 0px;
+}
+
+.modalInputCol {
+    display: flex;
+    flex-direction: column;
+    color: #201A23;
+    margin: 5px 0px 5px 0px;
+}
+
+.modalInputRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #201A23;
+    /* margin: 5px 0px 5px 0px; */
+}
+
+input {
+    font-size: 16px;
+    line-height: 26px;
+    padding: 10px;
+    min-height: 36px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: solid 1px #D8D0DC;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
 #userLibrary {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 30px));
-    margin: 40px;
-    list-style-type: none;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    height: 100%;
+    margin: 20px;
+    /* list-style-type: none; */
 }
 
 .bookCard {
-    position: relative;
     display: flex;
     flex-direction: column;
-    max-width: 200px;
+    max-width: 350px;
     min-height: 140px;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
     background: #FCF3EE;
     margin: 20px;
-    padding: 2.75em 2.5em
+    padding: 10%;
+    color: #201A23;
+    box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .5);
 }
     

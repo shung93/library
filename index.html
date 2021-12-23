@@ -11,13 +11,48 @@
     
     <div class="header">
         <div class="logo">Bibliotek</div>
+        <div class="sublogo">Hvor er biblioteket?</div>
     </div>
 
     <div class="content">
+        <button id="modalBtn">Add Book</button>
         <div id="userLibrary">
 
         </div>
     </div> 
+
+    <div id="bookModal" class="modal">
+        <div class="modalContent">
+            
+            <div class="modalHeader">
+                <h1>Add New Book</h1>
+                <span class="close">&times;</span>
+            </div>
+            
+            <div class="modalInputCol">
+                Title
+                <input type="text" id="title">
+            </div>
+            
+            <div class="modalInputCol">
+                Author
+                <input type="text" id="author">
+            </div>
+
+            <div class="modalInputCol">
+                Pages
+                <input type="text" id="pages">
+            </div>
+
+            <div class="modalInputRow">
+                Finished reading?
+                <input type="checkbox" id="readStatus">
+            </div>
+            
+            <button id="submitBtn">Submit</button>
+            
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
