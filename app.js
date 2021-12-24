@@ -35,15 +35,29 @@ Book.prototype.cardDiv = function() {
     bookStatus.className = "bookStatus";
     bookStatus.innerHTML = this.readStatus;
 
-    let delBook = document.createElement("button")
-    delBook.className = "delBtn"
-    delBook.innerHTML = "Remove"
+    let bookBtns = document.createElement("div");
+    bookBtns.className = "bookBtns";
+
+    let delBook = document.createElement("button");
+    delBook.className = "delBtn";
+    delBook.innerHTML = "Remove";
+
+    let completeBtn = document.createElement("button");
+    completeBtn.className = "completeBtn";
+    completeBtn.innerHTML = "Complete";
+
+    let incompleteBtn = document.createElement("button");
+    incompleteBtn.className = "incompleteBtn";
+    incompleteBtn.innerHTML = "Incomplete";
 
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
     bookCard.appendChild(bookPages);
     bookCard.appendChild(bookStatus);
-    bookCard.appendChild(delBook);
+    bookCard.appendChild(bookBtns);
+    bookBtns.appendChild(completeBtn);
+    bookBtns.appendChild(incompleteBtn);
+    bookBtns.appendChild(delBook);
 
     return bookCard;
 };
@@ -59,6 +73,7 @@ function displayBooks() {
 
     for (let i = 0; i < myLibrary.length; i++) {
         document.getElementById("userLibrary").append(myLibrary[i].cardDiv());
+        completeBook();
         removeBook();
     };
 };
@@ -79,22 +94,23 @@ function modalForm(){
     }
 
     submitBtn.onclick = function() {
-        let title = document.getElementById("title").value;
-        let author = document.getElementById("author").value;
-        let pages = document.getElementById("pages").value;
-        let readStatus = document.getElementById("readStatus").value;
+        // let title = document.getElementById("title").value;
+        // let author = document.getElementById("author").value;
+        // let pages = document.getElementById("pages").value;
+        // let readStatus = document.getElementById("readStatus").value;
 
-        if (readStatus==="on") {
-            readStatus = "Complete";
-        } else {
-            readStatus = "Incomplete";
-        };
+        // if (readStatus==="on") {
+        //     readStatus = "Complete";
+        // } else {
+        //     readStatus = "Incomplete";
+        // };
 
-        const newBook = new Book(title, author, pages, readStatus);
-        addBookToLibrary(newBook);
+        // const newBook = new Book(title, author, pages, readStatus);
+        // addBookToLibrary(newBook);
 
-        modal.style.display = "none";
-        clearModal();
+        // modal.style.display = "none";
+        // clearModal();
+        validateForm();
     };
 };
 
@@ -103,12 +119,60 @@ function removeBook() {
 
     for (let i = 0; i < delBtnArray.length; i++) {
         delBtnArray[i].addEventListener("click", function(event) {
-            console.log(this.parentElement.getAttribute("data-value"));
+            const currIdx = this.parentElement.parentElement.getAttribute("data-value");
+            myLibrary.splice(currIdx, 1);
+            displayBooks();
         });
     }
+};
 
-    // myLibrary.splice(idx, 1)
-}
+function completeBook() {
+    const completeBtnArray = document.getElementsByClassName("completeBtn");
+
+    for (let i = 0; i < completeBtnArray.length; i++) {
+        completeBtnArray[i].addEventListener("click", function(event) {
+            const currIdx = this.parentElement.parentElement.getAttribute("data-value");
+            myLibrary[currIdx].readStatus = "Complete";
+            displayBooks();
+        });
+    };
+
+    const incompleteBtnArray = document.getElementsByClassName("incompleteBtn");
+
+    for (let i = 0; i < incompleteBtnArray.length; i++) {
+        incompleteBtnArray[i].addEventListener("click", function(event) {
+            const currIdx = this.parentElement.parentElement.getAttribute("data-value");
+            myLibrary[currIdx].readStatus = "Incomplete";
+            displayBooks();
+        });
+    };
+};
+
+function validateForm() {
+    let title = document.forms["newBookForm"]["title"].value;
+    let author = document.forms["newBookForm"]["author"].value;
+    let pages = document.forms["newBookForm"]["pages"].value;
+    let readStatus = document.forms["newBookForm"]["readStatus"].value;
+
+    if (title !== "" && author !== "" && pages !== "" && title.length < 3800) {
+        // && Number.isInteger(pages) && pages > 0 && Number.isInteger(title) === false && Number.isInteger(author) === false
+        if (readStatus==="on") {
+            readStatus = "Complete";
+        } else {
+            readStatus = "Incomplete";
+        };
+        
+        const newBook = new Book(title, author, pages, readStatus);
+        addBookToLibrary(newBook);
+
+        modal.style.display = "none";
+        clearModal();
+    } else {
+        alert("Please complete required fields.")
+        return false;
+    };
+
+};
 
 function clearModal() {
     document.getElementById("title").value = "";
@@ -116,9 +180,6 @@ function clearModal() {
     document.getElementById("pages").value = "";
     document.getElementById("readStatus").value = "";
 };
-
-
-let myLibrary = [];
 
 // const test1 = new Book('Lord of the Rings: The Return of the King', 'J.R.R. Tolkien', '789', 'Incomplete')
 // const test2 = new Book('Lord of the Rings: The Fellowship of the Ring', 'J.R.R. Tolkien', '789', 'Incomplete')
@@ -128,5 +189,6 @@ let myLibrary = [];
 // myLibrary.push(test2)
 // myLibrary.push(test3)
 
+let myLibrary = [];
 modalForm();
 displayBooks();

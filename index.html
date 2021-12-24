@@ -22,7 +22,7 @@
     </div> 
 
     <div id="bookModal" class="modal">
-        <div class="modalContent">
+        <form name="newBookForm" class="modalContent">
             
             <div class="modalHeader">
                 <h1>Add New Book</h1>
@@ -31,17 +31,17 @@
             
             <div class="modalInputCol">
                 Title
-                <input type="text" id="title">
+                <input id="title" type="text" required />
             </div>
             
             <div class="modalInputCol">
                 Author
-                <input type="text" id="author">
+                <input id="author" type="text" required />
             </div>
 
             <div class="modalInputCol">
                 Pages
-                <input type="text" id="pages">
+                <input id="pages" type="text" required />
             </div>
 
             <div class="modalInputRow">
@@ -49,9 +49,9 @@
                 <input type="checkbox" id="readStatus">
             </div>
             
-            <button id="submitBtn">Submit</button>
+            <button type="button" id="submitBtn">Submit</button>
             
-        </div>
+        </form>
     </div>
 
     <script src="app.js"></script>
