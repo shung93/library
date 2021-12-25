@@ -82,13 +82,14 @@ function modalForm(){
     let modal = document.getElementById("bookModal");
     let modalBtn = document.getElementById("modalBtn");
     let submitBtn = document.getElementById("submitBtn");
-    let span = document.getElementsByClassName("close")[0];
+    let closeBtn = document.getElementsByClassName("close")[0];
 
     modalBtn.onclick = function() { 
         modal.style.display = "block";
+        clearModal();
     }
 
-    span.onclick = function() {
+    closeBtn.onclick = function() {
         modal.style.display = "none";
         clearModal();
     }
@@ -153,9 +154,9 @@ function validateForm() {
     let author = document.forms["newBookForm"]["author"].value;
     let pages = document.forms["newBookForm"]["pages"].value;
     let readStatus = document.forms["newBookForm"]["readStatus"].value;
+    let modal = document.getElementById("bookModal");
 
-    if (title !== "" && author !== "" && pages !== "" && title.length < 3800) {
-        // && Number.isInteger(pages) && pages > 0 && Number.isInteger(title) === false && Number.isInteger(author) === false
+    if (title !== "" && author !== "" && pages !== "" && title.length < 3800 && Number.isInteger(parseInt(pages)) && parseInt(pages) > 0) {
         if (readStatus==="on") {
             readStatus = "Complete";
         } else {
@@ -167,6 +168,7 @@ function validateForm() {
 
         modal.style.display = "none";
         clearModal();
+
     } else {
         alert("Please complete required fields.")
         return false;
