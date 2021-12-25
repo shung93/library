@@ -4,7 +4,7 @@
 function Book(title, author, pages, readStatus) {
     this.title = title;
     this.author = author;
-    this.pages = pages;
+    this.pages = pages + " page(s)";
     this.readStatus = readStatus;
     this.id = myLibrary.length;
 };
@@ -95,22 +95,6 @@ function modalForm(){
     }
 
     submitBtn.onclick = function() {
-        // let title = document.getElementById("title").value;
-        // let author = document.getElementById("author").value;
-        // let pages = document.getElementById("pages").value;
-        // let readStatus = document.getElementById("readStatus").value;
-
-        // if (readStatus==="on") {
-        //     readStatus = "Complete";
-        // } else {
-        //     readStatus = "Incomplete";
-        // };
-
-        // const newBook = new Book(title, author, pages, readStatus);
-        // addBookToLibrary(newBook);
-
-        // modal.style.display = "none";
-        // clearModal();
         validateForm();
     };
 };
@@ -133,7 +117,7 @@ function completeBook() {
     for (let i = 0; i < completeBtnArray.length; i++) {
         completeBtnArray[i].addEventListener("click", function(event) {
             const currIdx = this.parentElement.parentElement.getAttribute("data-value");
-            myLibrary[currIdx].readStatus = "Complete";
+            myLibrary[currIdx].readStatus = "Completed";
             displayBooks();
         });
     };
@@ -153,17 +137,18 @@ function validateForm() {
     let title = document.forms["newBookForm"]["title"].value;
     let author = document.forms["newBookForm"]["author"].value;
     let pages = document.forms["newBookForm"]["pages"].value;
-    let readStatus = document.forms["newBookForm"]["readStatus"].value;
+    // let readStatus = document.getElementById("readStatus").value;
     let modal = document.getElementById("bookModal");
 
     if (title !== "" && author !== "" && pages !== "" && title.length < 3800 && Number.isInteger(parseInt(pages)) && parseInt(pages) > 0) {
-        if (readStatus==="on") {
-            readStatus = "Complete";
-        } else {
-            readStatus = "Incomplete";
-        };
+        // console.log(readStatus)
+        // if (readStatus==="on") {
+        //     readStatus = "Complete";
+        // } else {
+        //     readStatus = "Incomplete";
+        // };
         
-        const newBook = new Book(title, author, pages, readStatus);
+        const newBook = new Book(title, author, pages, readStatus="Incomplete");
         addBookToLibrary(newBook);
 
         modal.style.display = "none";
@@ -180,7 +165,7 @@ function clearModal() {
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
     document.getElementById("pages").value = "";
-    document.getElementById("readStatus").value = "";
+    // document.getElementById("readStatus").value = "";
 };
 
 // const test1 = new Book('Lord of the Rings: The Return of the King', 'J.R.R. Tolkien', '789', 'Incomplete')

@@ -26,6 +26,7 @@ h1 {
 
 h2 {
     color: #362B3B;
+    font-variant: small-caps;
     font-size: 1.75em;
     font-weight: 500;
     line-height: 1;
@@ -81,13 +82,13 @@ p {
 
 .bookBtns {
     display: flex;
-
+    margin-top: 10px;
 }
 
 .delBtn {
     cursor: pointer;
-    background: #b9b9b9;
-    border: #b9b9b9 solid 1px;
+    background: #707070;
+    border: #707070 solid 1px;
     border-radius: 40px;
     font-size: 12px;
     color: #fff;
@@ -98,7 +99,7 @@ p {
 }
 
 .delBtn:hover {
-    background-color: #707070;
+    background-color: #a7a7a7;
     cursor: pointer;
 }
 
